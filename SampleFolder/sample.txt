@@ -1,0 +1,12 @@
+--------------------------------------This is a placeholder file used only for triggering pull request validations.--------------------------------
+--------------------------------------Modifying this file does not affect any application logic or functionality.----------------------------------
+
+Use this file to test:
+
+GitHub Actions PR workflow triggers
+PR title and description validations
+Linter behavior on new pull requests
+Safe to edit or revert at any time.
+
+--------------------------------------This is a placeholder file used only for triggering pull request validations.--------------------------------
+--------------------------------------Modifying this file does not affect any application logic or functionality.----------------------------------
