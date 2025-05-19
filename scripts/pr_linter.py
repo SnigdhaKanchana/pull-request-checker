@@ -58,9 +58,10 @@ def validate_body_structure(body):
             errors.append("Description of change must contain at least 10 meaningful words.")
             
     # Optional: Warn if soft sections are missing
-    for section in ["3. Testing", "4. Don’t forget", "5. Notes"]:
-        if sections[section] not in body:
-            warnings.append(f"Recommended section missing: `{sections[section]}`.")
+    sections = ["Testing that was done", "Don’t forget", "Additional Notes"]
+    for section in sections:
+        if not any(section.lower() in line.lower() for line in body.splitlines()):
+            warnings.append(f"Recommended section missing: {section}")
 
     return errors, warnings
 
