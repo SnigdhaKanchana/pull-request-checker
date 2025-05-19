@@ -98,10 +98,17 @@ def main():
         sys.exit(1)
 
     pr_data = response.json()
+
     # Skip if it's still a draft
     if pr_data.get("draft", False):
         print("⚠️ Skipping validation: PR is still in draft mode.")
         sys.exit(0)
+
+    # Label Validaion
+    labels = pr_data.get("labels", [])
+    is_label_valid, label_error = validate_labels(labels)
+    if not is_label_valid:
+        errors.append(f":x: {label_error}")
         
     title = pr_data["title"]
     body = pr_data.get("body", "")
