@@ -108,7 +108,7 @@ def main():
     labels = pr_data.get("labels", [])
     is_label_valid, label_error = validate_labels(labels)
     if not is_label_valid:
-        errors.append(f":x: {label_error}")
+        errors.append(f"❌ {label_error}")
         
     title = pr_data["title"]
     body = pr_data.get("body", "")
