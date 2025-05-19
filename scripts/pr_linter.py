@@ -63,7 +63,15 @@ def validate_body_structure(body):
             warnings.append(f"Recommended section missing: `{sections[section]}`.")
 
     return errors, warnings
-    
+
+def validate_labels(labels):
+    label_names = [label["name"] for label in labels]
+    required_labels = ["Risk: Low", "Risk: High"]
+
+    if not any(risk_label in label_names for risk_label in required_labels):
+        return False, "PR must be labeled with either 'Risk: Low' or 'Risk: High'."
+    return True, None
+
 def post_comment(repo, pr_number, token, message):
     url = f"https://api.github.com/repos/{repo}/issues/{pr_number}/comments"
     headers = {
@@ -73,9 +81,9 @@ def post_comment(repo, pr_number, token, message):
     payload = {"body": message}
     response = requests.post(url, headers=headers, json=payload)
     if response.status_code != 201:
-        print(f":warning: Failed to post comment. Status: {response.status_code} — {response.text}")
+        print(f"⚠️ Failed to post comment. Status: {response.status_code} — {response.text}")
     else:
-        print(":speech_balloon: Comment posted successfully on the PR.")
+        print("💬 Comment posted successfully on the PR.")
         
 def main():
     pr_number = os.environ["PR_NUMBER"]
