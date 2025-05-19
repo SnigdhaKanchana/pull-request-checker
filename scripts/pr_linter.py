@@ -84,7 +84,7 @@ def post_comment(repo, pr_number, token, message):
     if response.status_code != 201:
         print(f"⚠️ Failed to post comment. Status: {response.status_code} — {response.text}")
     else:
-        print("💬 Comment posted successfully on the PR.")
+        print("\n💬 Comment posted successfully on the PR.")
         
 def main():
     pr_number = os.environ["PR_NUMBER"]
@@ -123,8 +123,6 @@ def main():
 
     body_errors, body_warnings = validate_body_structure(body)
     errors.extend(f"❌ {err}" for err in body_errors)
-    for warn in body_warnings:
-        print(f"⚠️ {warn}")
     
     if errors:
         full_error_message = "❌ **PR validation failed:**\n\n" + "\n".join(errors)
