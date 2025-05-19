@@ -1,0 +1,22 @@
+name: Debug Token Access
+on:
+  pull_request:
+    types: [opened]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  test-token:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print GITHUB_REPOSITORY
+        run: echo "Repo is: $GITHUB_REPOSITORY"
+
+      - name: GitHub API test
+        run: |
+          echo "Calling GitHub API..."
+          curl -H "Authorization: Bearer $GITHUB_TOKEN" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/repos/${GITHUB_REPOSITORY}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
