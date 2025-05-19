@@ -1,4 +1,4 @@
-# Smart PR Checks with Automated PullRequest Linter (GitHub Actions)
+# Smart PR Checks with Automated PullRequest Linter
 
 This project helps teams write better pull requests by checking titles, descriptions, and labels automatically.
 It gently reminds contributors to follow a standard format and gives helpful feedback if something is missing or unclear.
