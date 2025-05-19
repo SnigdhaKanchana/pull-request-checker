@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print GITHUB_REPOSITORY
-        run: echo "Repo is: $GITHUB_REPOSITORY"
+        run: echo $GITHUB_REPOSITORY
 
       - name: GitHub API test
         run: |
