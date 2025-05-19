@@ -103,18 +103,18 @@ def main():
     if pr_data.get("draft", False):
         print("⚠️ Skipping validation: PR is still in draft mode.")
         sys.exit(0)
-
-    # Label Validaion
-    labels = pr_data.get("labels", [])
-    is_label_valid, label_error = validate_labels(labels)
-    if not is_label_valid:
-        errors.append(f"❌ {label_error}")
         
     title = pr_data["title"]
     body = pr_data.get("body", "")
     branch_name = pr_data["head"]["ref"]
 
     errors = []
+
+    # Label Validaion
+    labels = pr_data.get("labels", [])
+    is_label_valid, label_error = validate_labels(labels)
+    if not is_label_valid:
+        errors.append(f"❌ {label_error}")
 
     is_title_valid, title_error = validate_title(title, branch_name)
     if not is_title_valid:
